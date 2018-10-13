@@ -22,6 +22,52 @@ The field provides a multipleselect field with options from a request in the for
 * no population possible
 * only values are stored, there is no `_id` relation etc.
 
+## Options
+
+`request` and `value` are mandatory.
+The select field expects an array to display correctly.
+
+```json
+{
+  "request": "/api/cockpit/listUsers?token=xxtokenxx",
+  "value":"fieldname"
+}
+```
+
+If you want a different fieldname as label and an optional info icon:
+
+```json
+{
+  "request": "/api/cockpit/listUsers?token=xxtokenxx",
+  "value": "fieldname",
+  "label": "fieldname2",
+  "info": "fieldname3"
+}
+```
+
+If the response of your request looks like this
+
+```json
+{
+  "accounts": [
+    {
+      "fieldname1" : "value1"
+    }
+  ],
+  "count": 1
+}
+```
+
+add the key to the options:
+
+```json
+{
+  "request": "/accounts/find",
+  "key": "accounts",
+  "value": "_id"
+}
+```
+
 ## Field options examples
 
 **built-in helper functions**
