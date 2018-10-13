@@ -1,10 +1,10 @@
-# FieldRequestOptions
+# SelectRequestOptions
 
 Select field with options based on custom requests
 
 Addon for [Cockpit CMS](https://github.com/agentejo/cockpit)
 
-Copy the folder `FieldRequestOptions` to `addons/FieldRequestOptions`
+Copy the folder `SelectRequestOptions` to `addons/SelectRequestOptions`
 
 Create a field "Select-Request-Options" in a collection and adjust the field options to your needs (examples below).
 
