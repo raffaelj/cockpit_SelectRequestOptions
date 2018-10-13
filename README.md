@@ -84,6 +84,19 @@ https://github.com/raffaelj/cockpit-scripts/blob/master/restrict-built-in-helper
 }
 ```
 
+```json
+{
+  "request": "/api/cockpit/assets",
+  "key": "assets",
+  "options":{
+    "token":"xxtokenxx"
+  },
+  "value": "_id",
+  "label": "title",
+  "info": "mime"
+}
+```
+
 Notice: To adjust/restrict the output of `listUsers`, have a look at
 https://github.com/raffaelj/cockpit-scripts/blob/master/custom-api-endpoints/listUsers.php
 
