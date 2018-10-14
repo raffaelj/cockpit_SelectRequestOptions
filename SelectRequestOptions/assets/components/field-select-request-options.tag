@@ -1,3 +1,7 @@
+App.Utils.renderer['select-request-options'] = function(v) {
+    return App.Utils.renderer.multipleselect(v);
+};
+
 <field-select-request-options>
     <div class="{ options.length > 10 ? 'uk-scrollable-box':'' }">
         <div class="uk-margin-small-top" each="{option in options}">
