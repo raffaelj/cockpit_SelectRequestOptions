@@ -118,6 +118,24 @@ add the key to the options:
 }
 ```
 
+**value can be an object with mapped keys**
+
+```json
+{
+  "request": "/collections/find",
+  "options": {
+    "collection": "pages"
+  },
+  "key": "entries",
+  "label": "title",
+  "value": {
+    "name": "title",
+    "description": "content",
+    "index": "_id"
+  }
+}
+```
+
 Notice: To adjust/restrict the output of the built-in helpers, have a look at
 https://github.com/raffaelj/cockpit-scripts/blob/master/restrict-built-in-helpers/bootstrap.php
 
