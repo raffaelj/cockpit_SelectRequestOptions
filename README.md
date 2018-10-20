@@ -8,14 +8,14 @@ Copy the folder `SelectRequestOptions` to `addons/SelectRequestOptions`
 
 Create a field "Select-Request-Options" in a collection and adjust the field options to your needs (examples below).
 
-The field provides a multipleselect field with options from a request in the form
+The field provides a (multiple) select field with options from a request in the form
 `App.request(opts.request, opts.options).then(function(data){...});`
 
 **Use case**
 
 * simple select field, that grabs some content from helper collections like categories...
 * simple select field for custom helper functions, which provide some structured output
-* can replace the default multipleselect field with hard-coded options
+* can replace the default select and multipleselect field with hard-coded options
 
 **Difference to [collection-link](https://getcockpit.com/documentation/reference/fieldtypes)**
 
@@ -30,7 +30,8 @@ The select field expects an array to display correctly.
 ```json
 {
   "request": "/api/cockpit/listUsers?token=xxtokenxx",
-  "value":"fieldname"
+  "value":"fieldname",
+  "multiple": true    # default: false --> select or multipleselect field
 }
 ```
 
@@ -132,7 +133,8 @@ add the key to the options:
     "name": "title",
     "description": "content",
     "index": "_id"
-  }
+  },
+  "multiple": true
 }
 ```
 
@@ -184,3 +186,15 @@ $app->on('admin.init', function(){
   "label":"name"
 }
 ```
+
+## Changelog
+
+**2018-10-20**
+
+* added `multiple` option, default: `"multiple": false`
+
+**2018-10-19**
+
+* improved entries view renderer
+* display existing data, that is not part of the request as option with a warning
+* values can now be arrays of objects, only arrays of single values were possible before

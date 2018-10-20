@@ -146,10 +146,14 @@ App.Utils.renderer['select-request-options'] = function(v) {
             var option = e.item.option.value || e.item.option.value_orig,
                 index  = this.id(option, this.selected);
 
-            if (index == -1) {
-                this.selected.push(option);
+            if (opts.multiple) {
+                if (index == -1) {
+                    this.selected.push(option);
+                } else {
+                    this.selected.splice(index, 1);
+                }
             } else {
-                this.selected.splice(index, 1);
+                this.selected = index == -1 ? [option] : [];
             }
 
             this.$setValue(this.selected);
