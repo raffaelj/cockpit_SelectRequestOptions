@@ -28,11 +28,17 @@ App.Utils.renderer['select-request-options'] = function(v) {
 };
 
 <field-select-request-options>
-    <div class="{ options.length > 10 ? 'uk-scrollable-box':'' }">
+
+    <cp-field type="tags" if="{ opts.display_field == 'tags' }" opts="{ {autocomplete:values} }" bind="{ opts.bind }"></cp-field>
+    
+    <cp-field type="colortag" if="{ opts.display_field == 'colortag' }" opts="{ {colors:values} }" bind="{ opts.bind }"></cp-field>
+    
+    <div class="{ options.length > 10 ? 'uk-scrollable-box':'' }" if="{ !opts.display_field || opts.display_field == 'select-request-options' }">
         <div class="uk-margin-small-top" each="{option in options}">
             <a class="{ id(option.value, parent.selected) !==-1 || id(option.value_orig, parent.selected) !==-1 ? 'uk-text-primary':'uk-text-muted' }" onclick="{ parent.toggle }">
                 <i class="uk-icon-{ id(option.value, parent.selected) !==-1 || id(option.value_orig, parent.selected) !==-1 ? 'circle':'circle-o' } uk-margin-small-right"></i>
-                { option.label }
+                <span if="{ !opts.renderer }">{ option.label }</span>
+                <raw if="{ opts.renderer }" content="{ renderer(option.value) }"></raw>
                 <i class="uk-icon-info uk-margin-small-right" title="{ option.info }" data-uk-tooltip if="{ option.info }"></i>
                 <i class="uk-icon-warning uk-margin-small-right" title="{ option.warning }" data-uk-tooltip if="{ option.warning }"></i>
             </a>
@@ -44,6 +50,7 @@ App.Utils.renderer['select-request-options'] = function(v) {
     <script>
 
         var $this = this;
+
         this.selected = [];
         this.options  = [];
         this.error_message  = null;
@@ -58,6 +65,13 @@ App.Utils.renderer['select-request-options'] = function(v) {
                 }
             }
             return -1;
+        }
+        
+        this.renderer = function(e) {
+            if (typeof App.Utils.renderer[opts.renderer] === 'function') {
+                return App.Utils.renderer[opts.renderer](e);
+            }
+            return 'no renderer found';
         }
 
         this.on('mount', function() {
@@ -84,7 +98,7 @@ App.Utils.renderer['select-request-options'] = function(v) {
                         }
 
                         option = {
-                            value : value ? value : (option.hasOwnProperty(opts.value) ? option[opts.value].toString().trim() : ''),
+                            value : value ? value : (option.hasOwnProperty(opts.value) ? option[opts.value] : ''),
                             label : (opts.label ? (typeof(option[opts.label]) !== 'undefined' ? option[opts.label].toString().trim() : 'n/a') : option[opts.value].toString().trim()),
                             info  : opts.info ? option[opts.info].toString().trim() : false
                         };
@@ -107,6 +121,13 @@ App.Utils.renderer['select-request-options'] = function(v) {
                         }
 
                     }
+                    
+                    // pass values to nested field - experimental
+                    if (opts.display_field) {
+                        $this.values = $this.options.map(function(o) {
+                            return o.value;
+                        });
+                    }
 
                 } else {
                     displayError(data);
@@ -122,6 +143,7 @@ App.Utils.renderer['select-request-options'] = function(v) {
             
             console.log('something went wrong...: App.request(\'' + opts.request + (opts.options ? '\', ' + JSON.stringify(opts.options) : '') + ')\r\n', data);
         }
+
 
         // seems to have no effect...
         // this.$initBind = function() {
@@ -157,6 +179,7 @@ App.Utils.renderer['select-request-options'] = function(v) {
             }
 
             this.$setValue(this.selected);
+
         }
 
     </script>

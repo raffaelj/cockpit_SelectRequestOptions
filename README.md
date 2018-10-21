@@ -189,6 +189,11 @@ $app->on('admin.init', function(){
 
 ## Changelog
 
+**2018-10-21**
+
+* added renderer to display pretty select options, example: `"renderer": "color"`
+* added experimental option to pass options and to display nested riot tag instead of default, option: `"display_field": "tags"`
+
 **2018-10-20**
 
 * added `multiple` option, default: `"multiple": false`
