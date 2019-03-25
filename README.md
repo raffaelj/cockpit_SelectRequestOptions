@@ -36,7 +36,7 @@ The field provides a (multiple) select field with options from a request in the 
 `request` and `value` are mandatory.
 The select field expects an array to display correctly.
 
-```json
+```
 {
   "request": "/api/cockpit/listUsers?token=xxtokenxx",
   "value":"fieldname",
