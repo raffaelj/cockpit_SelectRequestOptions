@@ -4,7 +4,16 @@ Select field with options based on custom requests
 
 Addon for [Cockpit CMS](https://github.com/agentejo/cockpit)
 
-Copy the folder `SelectRequestOptions` to `addons/SelectRequestOptions`
+## Installation
+
+Copy this repository into `/addons` and name it `SelectRequestOptions` or
+
+```bash
+cd path/to/cockpit
+git clone https://github.com/raffaelj/cockpit_SelectRequestOptions.git addons/SelectRequestOptions
+```
+
+## Usage
 
 Create a field "Select-Request-Options" in a collection and adjust the field options to your needs (examples below).
 
