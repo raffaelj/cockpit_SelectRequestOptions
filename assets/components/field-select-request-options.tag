@@ -38,7 +38,7 @@ App.Utils.renderer['select-request-options'] = function(v) {
             <a class="{ id(option.value, parent.selected) !==-1 || id(option.value_orig, parent.selected) !==-1 ? 'uk-text-primary':'uk-text-muted' }" onclick="{ parent.toggle }">
                 <i class="uk-icon-{ id(option.value, parent.selected) !==-1 || id(option.value_orig, parent.selected) !==-1 ? 'circle':'circle-o' } uk-margin-small-right"></i>
                 <span if="{ !opts.renderer }">{ option.label }</span>
-                <raw if="{ opts.renderer }" content="{ renderer(option.value) }"></raw>
+                <raw if="{ opts.renderer }" content="{ renderer(option.renderer_display || option.value) }"></raw>
                 <i class="uk-icon-info uk-margin-small-right" title="{ option.info }" data-uk-tooltip if="{ option.info }"></i>
                 <i class="uk-icon-warning uk-margin-small-right" title="{ option.warning }" data-uk-tooltip if="{ option.warning }"></i>
             </a>
@@ -100,8 +100,13 @@ App.Utils.renderer['select-request-options'] = function(v) {
                         option = {
                             value : value ? value : (option.hasOwnProperty(opts.value) ? option[opts.value] : ''),
                             label : (opts.label ? (typeof(option[opts.label]) !== 'undefined' ? option[opts.label].toString().trim() : 'n/a') : option[opts.value].toString().trim()),
-                            info  : opts.info ? option[opts.info].toString().trim() : false
+                            info  : opts.info ? option[opts.info].toString().trim() : false,
+                            renderer_display: (opts.renderer_display && typeof(option[opts.renderer_display]) !== 'undefined' ? option[opts.renderer_display].toString().trim() : '')
                         };
+                        
+                        // if (opts.renderer_display) {
+                            // option.renderer_display = 
+                        // }
 
                         return option;
                     });

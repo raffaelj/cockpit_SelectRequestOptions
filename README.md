@@ -198,6 +198,10 @@ $app->on('admin.init', function(){
 
 ## Changelog
 
+**2019-03-28**
+
+* added new option `renderer_display` if you use e. g. che color field rendere, but want to store a different value than the hex value
+
 **2018-10-21**
 
 * added renderer to display pretty select options, example: `"renderer": "color"`

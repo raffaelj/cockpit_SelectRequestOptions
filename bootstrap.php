@@ -5,7 +5,7 @@
  * @see       https://github.com/raffaelj/cockpit_SelectRequestOptions
  * @see       https://github.com/agentejo/cockpit/
  * 
- * @version   0.1.1
+ * @version   0.1.2
  * @author    Raffael Jesche
  * @license   MIT
  * @note      work in progress
